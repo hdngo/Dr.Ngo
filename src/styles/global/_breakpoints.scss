@@ -1,0 +1,26 @@
+/* breakpoints */
+/* 320, 480, 768, 960, 1280, 1920 */
+$xs: 320px;
+$sm: 480px;
+$tablet: 768px;
+$sm-desktop: 960px;
+$desktop: 1280px;
+$lg-desktop: 1920px;
+
+@mixin min-bp($breakpoint){
+    @media screen and (min-width: $breakpoint) {
+        @content;
+    }
+}
+
+@mixin max-bp($breakpoint) {
+    @media screen and (max-width: $breakpoint) {
+        @content;
+    }
+}
+
+@mixin range-bp($breakpoint1, $breakpoint2) {
+    @media screen and (min-width: $breakpoint1) and (max-width: $breakpoint2) {
+        @content;
+    }
+}

@@ -1,0 +1,13 @@
+@import "../node_modules/normalize.css/normalize.css";
+
+/* global */
+@import '../src/styles/global/variables';
+@import '../src/styles/global/breakpoints';
+
+html {
+    -webkit-font-smoothing: antialiased;
+}
+
+*, :before, :after {
+    box-sizing: border-box;
+}
