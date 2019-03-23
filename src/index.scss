@@ -3,11 +3,9 @@
 /* global */
 @import '../src/styles/global/variables';
 @import '../src/styles/global/breakpoints';
+@import '../src/styles/global/default';
 
-html {
-    -webkit-font-smoothing: antialiased;
-}
-
-*, :before, :after {
-    box-sizing: border-box;
-}
+/* components */
+@import '../src/styles/components/modal';
+@import '../src/styles/components/program-pane';
+@import '../src/styles/components/section-card';
