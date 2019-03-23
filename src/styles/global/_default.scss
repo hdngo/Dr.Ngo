@@ -1,0 +1,17 @@
+html {
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Avenir', sans-serif;
+}
+
+*, :before, :after {
+    box-sizing: border-box;
+}
+
+button {
+    background-color: white;
+    border: 1px solid black;
+}
+
+#app {
+    padding: 40px;
+}

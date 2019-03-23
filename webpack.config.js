@@ -50,8 +50,8 @@ module.exports = {
               test: /\.(sa|sc|c)ss$/,
               use: [
                 /* MiniCss for Prod, style-loader for dev */
-                  MiniCssExtractPlugin.loader,
-                //   'style-loader',
+                //   MiniCssExtractPlugin.loader,
+                  'style-loader',
                   'css-loader',
                   'postcss-loader',
                   'sass-loader'
