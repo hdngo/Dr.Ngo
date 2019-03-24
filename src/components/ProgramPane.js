@@ -14,7 +14,7 @@ class ProgramPane extends Component {
         return (
             this.props.program.sections.map(section => (
                 <li key={`${this.props.program.name}-section-${section.order}`} className='program-section'>
-                    <SectionCard section={section} />
+                    <SectionCard program={this.props.program} section={section} />
                 </li>
             ))
         )
