@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 
 class Section extends Component {
     
-    render(location) {
-        let params = new URLSearchParams(location);
-        console.log(params);
+    render() {
         return (
             <div className='section'>
-                {/* {params} */}
+                <p>Section title</p>
             </div>
         )
     }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ModalLink from './ModalLink';
 import SectionCard from './SectionCard';
+import Section from './Section';
+import { Route } from 'react-router-dom';
 
 class ProgramPane extends Component {
     constructor(props) {
@@ -8,6 +10,15 @@ class ProgramPane extends Component {
         this.state = {
             value: null,
         }
+    }
+
+    renderProgramPaneHeader = () => {
+        return (
+            <div className='program-pane-header'>
+                <h2 className='program-name'>{this.props.program.name}</h2>
+                <ModalLink text={'Learn More'} modalText={this.props.program.description} />
+            </div>
+        )
     }
 
     renderSectionCards = () => {
@@ -20,15 +31,6 @@ class ProgramPane extends Component {
         )
     }
 
-    renderProgramPaneHeader = () => {
-        return (
-            <div className='program-pane-header'>
-                <h2 className='program-name'>{this.props.program.name}</h2>
-                <ModalLink text={'Learn More'} modalText={this.props.program.description} />
-            </div>
-        )
-    }
-
     render() {
         return (
             <div className='program-pane'>
@@ -36,6 +38,7 @@ class ProgramPane extends Component {
                 <ul className='program-sections'>
                     {this.renderSectionCards()}
                 </ul>
+                <Route path={'/section/:order'} component={Section} />
             </div>
         )
     }
