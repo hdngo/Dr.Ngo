@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import ProgramPane from './ProgramPane';
+import { 
+    Route,
+    Link,
+    Switch
+} from 'react-router-dom';
+import ProgramOverview from './ProgramOverview';
+import Section from './Section';
+import FourZeroFour from './FourZeroFour';
 
 const programsData = require('../../program.json');
 const programs = Object.values(programsData.programs);
@@ -15,24 +22,25 @@ const Meta = () => {
     )  
 }
 
-const ProgramList = (props) => {
-    return (
-        <React.Fragment>
-            {props.programs.map((program, index) => (
-                <ProgramPane key={index + 1} program={program} />
-            ))}
-        </React.Fragment>
-    )
-}
-
 class App extends Component {
     render() {
         return (
-            <React.Fragment>
-                <Meta />
-                <h1>Welcome to the office of Dr. Ngo!<br/>Help us help you by checking out the programs below.</h1>
-                <ProgramList programs={programs} />
-            </React.Fragment>
+            <Route render={({location}) => (
+
+                <React.Fragment>
+                    <Meta />
+                    <Switch location={location}>
+                        <Route 
+                            exact path='/' 
+                            render={(props) => <ProgramOverview {...props} programs={programs} />}
+                        />
+                        <Route exact path='/:program/section/:order' 
+                            render={(props) => <Section {...props} programs={programs} />}
+                        />
+                        <Route component={FourZeroFour} />
+                    </Switch>
+                </React.Fragment>
+            )}/>
         )
     }
 }
