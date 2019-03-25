@@ -9,7 +9,7 @@ document.body.appendChild(app);
 
 ReactDOM.render(
     <Router>
-        <App />,
+        <App />
     </Router>,
     document.getElementById('app')
 );

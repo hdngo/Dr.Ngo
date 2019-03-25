@@ -1,16 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const SectionCard = (props) => {
+function SectionCard (props) {
     return (
-        ///programs/${props.program.name.trim().replace(/\s/g, '-')}
-        <Link to={`${props.match.url}/section/${props.section.order}`} className='section-card'>
-            <div className='section'>
-                <img src={props.section.image} className='section-image' alt={`${props.section.name} overview image.`} />
-                <h3 className='section__order'>{`Part ${props.section.order + 1}`}</h3>
-                <h4 className='section__name'>{props.section.name}</h4>
-            </div>
-        </Link>
+        <div className='section'>
+            <img src={props.section.image} className='section-image' alt={`${props.section.name.toLowerCase().replace(/\s/g, '-')} overview image.`} />
+            <h3 className='section__order'>{`Part ${props.section.order + 1}`}</h3>
+            <h4 className='section__name'>{props.section.name}</h4>
+        </div>
     )
 }
 

@@ -6,6 +6,7 @@ const Home = () => {
         <React.Fragment>
             <h1>Welcome to the office of Dr. Ngo!<br/>Help us help you by checking out the programs below.</h1>
             {/* <button><Link to='/program-overview'>Programs</Link></button> */}
+            <Link to={`/programs`}>Get Started</Link>
         </React.Fragment>
     )
 }

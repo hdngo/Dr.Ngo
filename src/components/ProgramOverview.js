@@ -1,29 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import ModalLink from './ModalLink';
 import ProgramPane from './ProgramPane';
-import { Route } from 'react-router-dom';
-const ProgramList = ({programs}) => {
+import SectionCard from './SectionCard';
 
+const programsData = require('../../program.json');
+const programs = Object.values(programsData.programs);
+
+function ProgramOverview ({match}) {
     return (
         <React.Fragment>
             {programs.map((program, index) => (
-                <ProgramPane key={index} program={program} />
+                <ProgramPane key={`program-pane-${index}`} match={match} program={program} showDescription={false} />
             ))}
         </React.Fragment>
     )
 }
-
-class ProgramOverview extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <React.Fragment>
-                <ProgramList programs={this.props.programs} />
-            </React.Fragment>
-        )
-    }
-}
-
 export default ProgramOverview;
