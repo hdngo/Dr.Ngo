@@ -10,7 +10,13 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
     }
+}
+
+.program-description {
+    width: 100%;
+    margin: 20px 0;
 }
 
 .program-name {
