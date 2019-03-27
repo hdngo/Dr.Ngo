@@ -1,3 +1,6 @@
+@import '../global/breakpoints';
+@import '../global/variables';
+
 html {
     -webkit-font-smoothing: antialiased;
     font-family: 'Avenir', sans-serif;
@@ -14,4 +17,22 @@ button {
 
 #app {
     padding: 40px;
+
+    @include range-bp($sm, $sm-desktop) {
+        padding: 80px;
+    }
+
+    @include min-bp($sm-desktop) {
+        padding: 100px;
+    }
+}
+
+.section__image {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    max-width: 65%;
+    @include min-bp($tablet) {
+        max-width: 40%;
+    }
 }

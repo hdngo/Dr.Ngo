@@ -18,7 +18,7 @@ module.exports = {
       historyApiFallback: true
   },
   output: {
-    filename: '[name].js', // use [name].[has].js for prod
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },

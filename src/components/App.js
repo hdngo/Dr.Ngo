@@ -5,23 +5,25 @@ import {
     Switch
 } from 'react-router-dom';
 import Meta from './Meta';
-import Home from './Home';
-import ModalLink from './ModalLink';
-import ProgramOverview from './ProgramOverview';
-import Section from './Section';
+import ProgramOverview from './ProgramOverview/index';
+import Program from './Program/index';
+import Section from './Section/index';
 import FourZeroFour from './FourZeroFour';
 
-const programsData = require('../../program.json');
-const programs = Object.values(programsData.programs);
+// const programsData = require('../../program.json');
+// const programs = Object.values(programsData.programs);
 
 class App extends Component {
     render() {
         return (
             <React.Fragment>
                 <Meta />
-                <Route exact path='/' component={Home} />
-                <Route exact path='/programs' component={ProgramOverview} />
-                <Route exact path={`/programs/:programName/sections/:sectionName`} component={Section} />
+                <Switch>
+                    <Route exact path='/' component={ProgramOverview} />
+                    <Route exact path='/programs/:programId' component={Program} />
+                    <Route exact path={`/programs/:programId/sections/:sectionId`} component={Section} />
+                    <Route component={FourZeroFour} />
+                </Switch>
             </React.Fragment>
         )
     }
