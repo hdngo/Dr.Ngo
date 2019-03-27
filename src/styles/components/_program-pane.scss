@@ -24,7 +24,7 @@
     margin: 0;
 }
 
-.program-sections {
+.program-panel-sections {
     display: flex;
     justify-content: flex-start;
     align-items: stretch;
@@ -33,7 +33,13 @@
     padding: 0;
 }
 
-.program-section {
+.program-section-card-link {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.program-section-item {
     list-style-type: none;
     border: 1px solid $border-color;
     border-radius: 2px;

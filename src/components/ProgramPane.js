@@ -4,6 +4,11 @@ import SectionCard from './SectionCard';
 import Section from './Section';
 import { Link } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+const mapStateToProps = state => {
+    return { programs: state.programs };
+}
+
 function ProgramPane ({match, ...props}) {
     return(
         <div className='program-pane'>
@@ -19,7 +24,7 @@ function ProgramPane ({match, ...props}) {
             <ul className='program-sections'>
                 {props.program.sections.map(section => (
                     <li key={`${props.program.name}-section-${section.order}`} className='program-section'>
-                        <Link to={`${match.url}/${props.program.name.toLowerCase().replace(/\s/g, '-')}/sections/${section.name.toLowerCase().replace(/\s/g, '-')}`} className='section-card'>
+                        <Link to={`programs/${props.program.name.toLowerCase().replace(/\s/g, '-')}/sections/${section.name.toLowerCase().replace(/\s/g, '-')}`} className='section-card'>
                             <SectionCard program={props.program} section={section} />
                         </Link>
                     </li>
