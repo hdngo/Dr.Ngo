@@ -10,9 +10,6 @@ import Program from './Program/index';
 import Section from './Section/index';
 import FourZeroFour from './FourZeroFour';
 
-// const programsData = require('../../program.json');
-// const programs = Object.values(programsData.programs);
-
 class App extends Component {
     render() {
         return (
@@ -30,3 +27,7 @@ class App extends Component {
 }
 
 export default App;
+
+/* I would've ideally liked to deal with making the routes as dynamic as possible throughout the app, and also
+create a url helper function that'd regex and replace the program & section names. I originaly had a function but I removed it because it
+required me to make excessive string manipulations to look up items by their names. */

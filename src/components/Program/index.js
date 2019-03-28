@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ModalLink from '../ModalLink';
-// import ProgramPane from './ProgramPane';
 import SectionCard from '../SectionCard';
-
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 const mapStateToProps = state => {
     return { 
         programs: state.programs,
@@ -22,12 +22,13 @@ function Program ({ match, programs }) {
             </Link>
         </li>
     ));
+    
     return (
         <React.Fragment>
             { program && 
                 <article className='program-panel'>
                     <header className='program-panel-header'>
-                        <h2 className='program-name'>{program.name}</h2>
+                        <h2 className='program-name'>{program.name} {program.isComplete ? <FontAwesomeIcon icon='check-square' />: null}</h2>
                         <ModalLink text={`Learn More`} modalText={program.description} />
                     </header>
                     <ul className='program-panel-sections'>
@@ -35,8 +36,12 @@ function Program ({ match, programs }) {
                     </ul>
                 </article>
             }
+            <Link to={'/'} className='link link--overview'>Back to Programs</Link>
         </React.Fragment>
     )
 }
 
 export default connect(mapStateToProps)(Program);
+
+/* Ideally I would've liked to include a sort of progress bar that could be reused for each nested level of the data to sort of
+gamify things. With that in mind, it would've been nice to spend time with transitions for the subtle user feedback as well. */

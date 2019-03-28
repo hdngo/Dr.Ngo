@@ -16,3 +16,6 @@ function FooterNav (props) {
 }
 
 export default FooterNav;
+
+/* Ideally this would be a reusable component for all navigation, but like I mentioned in another comment, I was worried about scope creep, though I thought it would be useful to
+allow users to more easily navigate between sections while keeping the previous activity viewed in mind for starters. It would 'definitely' warrant a need for global state. */

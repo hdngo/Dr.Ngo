@@ -16,6 +16,7 @@
     height: 100%;
     width: 100%;
     background-color: hsla(200, 41%, 75%, 0.20);
+    z-index: 2;
 }
 
 .modal {
@@ -30,9 +31,13 @@
     transform: translate(-50%, -50%);
     padding: 50px;
     box-shadow: 2px 4px 10px 2px rgba(165, 200, 217, 0.4);
+    border: 1px solid cadetblue;
+    display: flex;
+    align-items: center;
+    line-height: 1.7;
 }
 
-.modal-close {
+.modal-close, .modal-close:focus {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -40,13 +45,17 @@
     width: 30px;
     padding: 0;
     border: none;
+    background-color: transparent;
+    border-color: transparent;
 
     &:hover {
         cursor: pointer;
+        background-color: transparent;
+        border-color: transparent;
 
         .modal-close-line {
             &:before {
-                background-color: $text-teal;
+                background-color: $btn-teal;
             }
         }
     }

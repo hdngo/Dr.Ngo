@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Activity from './activity';
 import FooterNav from './FooterNav';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Activities extends Component {
     constructor(props) {
@@ -47,14 +48,14 @@ class Activities extends Component {
     
     render() {
         const currentActivity = this.props.programs[this.props.programId].sections[this.props.sectionId].activities[this.state.currentActivityIndex];
-        console.log(this.props.programs);
         return (
             <React.Fragment>
                 <div className='activities'>
                     <div className='activity-nav'>
-                        <button className={`activity-prev ${this.state.currentActivityIndex === 0 ? 'hidden' : ''}`} onClick={this.handlePrevActivity}>Previous</button>
-                        <button className={`activity-next ${this.state.currentActivityIndex === this.state.activityCount - 1 ? 'hidden' : ''}`}  disabled={currentActivity.type === 'Question' && !currentActivity.isComplete} onClick={this.handleNextActivity}>Next</button>
-                        <Link to={`/programs/${this.props.programId}`} className={`activity-finish ${currentActivity.isComplete && this.state.currentActivityIndex === this.state.activityCount - 1 ? '' : 'hidden'}`} onClick={this.handleFinishActivity}>Finish</Link>
+                        <button className={`activity-prev ${this.state.currentActivityIndex === 0 ? 'hidden' : ''}`} onClick={this.handlePrevActivity}><FontAwesomeIcon icon='chevron-left' /></button>
+                        <button className={`activity-next ${this.state.currentActivityIndex === this.state.activityCount - 1 ? 'hidden' : ''}`}  disabled={currentActivity.type === 'Question' && !currentActivity.isComplete} onClick={this.handleNextActivity}><FontAwesomeIcon icon='chevron-right' /></button>
+                        {/* finish link should be visible if complete */}
+                        <Link to={`/programs/${this.props.programId}`} className={`activity-finish ${(currentActivity.isComplete) && (this.state.currentActivityIndex === this.state.activityCount - 1) ? '' : 'hidden'}`} onClick={this.handleFinishActivity}>Exit</Link>
                     </div>
                     {this.props.programs[this.props.programId].sections[this.props.sectionId].activities.map((activity, index) => (
                         <Activity key={`section-${this.props.sectionId}-activity-${index}`} active={this.state.currentActivityIndex === index} {...this.props} activity={activity} activityIndex={index}/>
@@ -67,3 +68,7 @@ class Activities extends Component {
 }
 
 export default Activities;
+
+/* I chose to make this component a class based one because I didn't feel as though the whole App needed to know about the 'current activity' state.
+This would change however if there was a requirement to allow the user to say, pick up from where he/she previously left off within a section, but I thought that
+it would lead to some definite scope creep granted there could be way more advanced navigational functionality. Ideally, I would have liked to make both nav components reusable but ran out of time. */

@@ -17,59 +17,27 @@ button {
 }
 
 #app {
-    padding: 20px;
+    padding: 40px;
 }
 
-.section__image {
-    display: block;
-    margin: 0 auto;
-    width: auto;
-    max-width: 65%;
-    @include min-bp($tablet) {
-        max-width: 40%;
+button, button:focus, .button {
+    outline: none;
+    border: 1px solid teal;
+    &:hover {
+        cursor: pointer;
+        background-color: darken(teal, 5%);
+        border-color: darken(teal, 5%);
     }
 }
 
-.section-nav {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    padding: 20px;
-    border-top: 1px solid #ccc;
-    display: flex;
-    width: 100%;
-    float: left;
-    margin-top: 20px;
-    justify-content: space-between;
+.link {
+    color: $link-color;
 
-    .link-back, .link-next {
-        display: inline-block;
-        color: white;
-        text-decoration: none;
-        padding: 10px;
-        border-color: teal;
-        border-radius: 2px;
-        width: 150px;
-        text-align: center;
-        &:hover {
-            border-color: darken(teal, 5%);
-        }
+    &:hover {
+        color: darken($link-color, 15%);
     }
-    
-    .link-back {
-        background-color: white;
-        color: darken(teal, 5%);
-        &:hover {
-            background-color: darken(teal, 5%);
-            color: white;
-        }
-    }
+}
 
-    .link-next {
-        background-color: teal;
-        &:hover {
-            background-color: white;
-            color: darken(teal, 5%);
-        }
-    }
+.fohfour-header {
+    font-size: 10rem;
 }
