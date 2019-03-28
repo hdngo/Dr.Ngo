@@ -12,19 +12,12 @@ html {
 
 button {
     background-color: white;
+    background-color: teal;
     border: 1px solid black;
 }
 
 #app {
-    padding: 40px;
-
-    @include range-bp($sm, $sm-desktop) {
-        padding: 80px;
-    }
-
-    @include min-bp($sm-desktop) {
-        padding: 100px;
-    }
+    padding: 20px;
 }
 
 .section__image {
@@ -34,5 +27,49 @@ button {
     max-width: 65%;
     @include min-bp($tablet) {
         max-width: 40%;
+    }
+}
+
+.section-nav {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 20px;
+    border-top: 1px solid #ccc;
+    display: flex;
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+    justify-content: space-between;
+
+    .link-back, .link-next {
+        display: inline-block;
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        border-color: teal;
+        border-radius: 2px;
+        width: 150px;
+        text-align: center;
+        &:hover {
+            border-color: darken(teal, 5%);
+        }
+    }
+    
+    .link-back {
+        background-color: white;
+        color: darken(teal, 5%);
+        &:hover {
+            background-color: darken(teal, 5%);
+            color: white;
+        }
+    }
+
+    .link-next {
+        background-color: teal;
+        &:hover {
+            background-color: white;
+            color: darken(teal, 5%);
+        }
     }
 }
