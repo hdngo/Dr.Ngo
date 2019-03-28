@@ -7,6 +7,7 @@ const autoprefixer = require('autoprefixer');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
+const postcssPresetEnv = require('postcss-preset-env');
 
 module.exports = {
   mode: 'development',  
@@ -53,8 +54,13 @@ module.exports = {
                 //   MiniCssExtractPlugin.loader,
                   'style-loader',
                   'css-loader',
-                  'postcss-loader',
-                  'sass-loader'
+                  'sass-loader',
+                  { loader: 'postcss-loader', options: {
+                    ident: 'postcss',
+                    plugins: () => [
+                      postcssPresetEnv(/* pluginOptions */)
+                    ],
+                  } }
               ]
           },
           // images

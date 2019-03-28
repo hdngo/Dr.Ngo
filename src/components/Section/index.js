@@ -38,10 +38,13 @@ function Section ({programs, match, completeAction}) {
         <React.Fragment>
             {  section ?
                 <section className='section'>
-                    <h1 className='section__name'>{section.name}</h1>
-                    <p className='section__description'>{section.description}</p>
-                    <img className='section__image' src={`${section.image}`} alt={`illustrating ${section.name}`} />
+                    <h1 className='section__name'>{`Part ${section.order + 1}: ${section.name}`}</h1>
+                    <div className='section__overview'>
+                        <p className='section__description'>{section.description}</p>
+                        <img className='section__image' src={`${section.image}`} alt={`illustrating ${section.name}`} />
+                    </div>
                     <Activities {...props} />
+                    <Link to={`/programs/${programId}`} className='link link--overview'>{`Back to ${program.name.toString().replace(/\s/g, ' ')}`}</Link>
                 </section>
                 :
                 <FourZeroFour />

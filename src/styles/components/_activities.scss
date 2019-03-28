@@ -1,0 +1,114 @@
+@import '../global/variables';
+@import '../global/breakpoints';
+.activities {
+    margin-bottom: 30px;
+}
+
+.activity-nav {
+    width: 100%;
+    padding: 0 20px;
+    float: left;
+    margin: 40px 0 30px 0;
+}
+
+button.activity-prev, button.activity-next {
+    color: white;
+    background-color: teal;
+    text-decoration: underline;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid teal;
+    border-radius: 25px;
+
+    &:hover {
+        background-color: transparent;
+        color: teal;
+    }
+    &.hidden {
+        display: none;
+    }
+}
+
+.activity-finish {
+    float: right;
+    height: 30px;
+    color: $link-color;
+    display: inline-flex;
+    align-items: center;
+    &.hidden {
+        visibility: hidden;
+        pointer-events: none;
+    }
+    &:hover {
+        color: darken($link-color, 15%);
+    }
+}
+.activity-prev {
+    float: left;
+}
+
+.activity-next {
+    float: right;
+
+    &:disabled {
+        pointer-events: none;
+        background-color: #ccc;
+        border-color: darken(#ccc, 5%);
+    }
+}
+
+.activity__content__line {
+    line-height: 1.5;
+}
+
+
+.activity {
+    &.activity--hidden {
+        display: none;
+        opacity: 0;
+        visibility: hidden;
+    }
+    &.activity--active {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.prompt-options {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding-left: 0;
+    flex-wrap: wrap;
+}
+
+.prompt-option {
+    display: inline-block;
+    padding: 10px;
+    color: $text-aqua;
+    background-color: $robin;
+    border: 1px solid $robin;
+    border-radius: 2px;
+    margin: 0 10px 10px 0;
+    width: 100%;
+    @include min-bp($sm) {
+        width: auto;
+    }
+
+    &:hover {
+        cursor: pointer;
+        color: white;
+        background-color: $btn-teal;
+        border-color: $btn-teal;
+    }
+}
+
+.prompt-option-selected {
+    color: white;
+    background-color: $btn-teal;
+    border-color: $btn-teal;
+}
