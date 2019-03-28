@@ -1,4 +1,5 @@
-
+@import '../global/variables';
+@import '../global/breakpoints';
 
 .prompt-options {
     display: flex;
@@ -6,7 +7,7 @@
     padding-left: 0;
 }
 
-button, button:focus {
+button, button:focus, .button {
     outline: none;
     border: 1px solid teal;
     &:hover {
@@ -39,14 +40,27 @@ button, button:focus {
 
 .activity-nav {
     width: 100%;
+    float: left;
 }
-.activity-prev, .activity-next {
-    padding: 10px;
-    color: white;
-    background-color: teal;
-    border: 1px solid teal;
-    border-radius: 2px;
+button.activity-prev, button.activity-next {
+    color: $link-color;
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
 
+    &:hover {
+        background-color: transparent;
+        border: none;
+        border-color: transparent;
+        color: darken($link-color, 15%);
+    }
+    &.hidden {
+        display: none;
+    }
+}
+
+.activity-finish {
+    float: right;
     &.hidden {
         display: none;
     }
@@ -58,8 +72,6 @@ button, button:focus {
     float: right;
 
     &:disabled {
-        background-color: lighten(rgb(155, 196, 196), 2.5%);
-        border-color: lighten(rgb(155, 196, 196), 2.5%);
         pointer-events: none;
     }
 }

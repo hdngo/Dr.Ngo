@@ -1,8 +1,8 @@
 const programsData = require('../../program.json');
 const programs = Object.values(programsData.programs);
-
 import { COMPLETE_ACTIVITY } from './constants';
 import update from 'immutability-helper';
+
 const initialState = {
     programs: programs.map((program)=>{
         return {
@@ -23,7 +23,6 @@ const initialState = {
             }),
         }
     })
-    //tracker: null // need another action to update tracker state
 };
 
 function rootReducer(state = initialState, action) {
@@ -35,6 +34,7 @@ function rootReducer(state = initialState, action) {
             if(selectActivity.type === 'Question') {
                 if(prevSelectActivityState.selectedOption === action.payload.optionId) {
                     /* Do nothing for question activities if the selected option is the same as the currently selected option */
+                    debugger
                     return state;
                 }
                 else {
@@ -52,16 +52,12 @@ function rootReducer(state = initialState, action) {
             if (isSectionComplete) {
                 newState = update(newState, {[action.payload.programId]: {['sections']: {[action.payload.sectionId]: {['isComplete']: {$set: true}}}}}); 
             }
-
             const isProgramComplete = newState[action.payload.programId].sections.every((section) => section.isComplete === true);
             if (isProgramComplete) {
                 newState = update(newState, {[action.payload.programId]: {['sections']:  {['isComplete']: {$set: true}}}}); 
             }
-
             /* Update program */
-            console.log('you made it here');
             return { programs: newState };
-
         default: return state;
     }
 };

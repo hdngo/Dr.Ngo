@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Activity from './activity';
+import FooterNav from './FooterNav';
 
 class Activities extends Component {
     constructor(props) {
@@ -7,7 +9,6 @@ class Activities extends Component {
         this.state = {
             currentActivityIndex: 0,
             activityCount: this.props.programs[this.props.programId].sections[this.props.sectionId].activities.length,
-            nextActivity: null,
         }
     }
 
@@ -25,26 +26,41 @@ class Activities extends Component {
 
     handleNextActivity = () => {
         if(this.state.currentActivityIndex === this.state.activityCount - 1) {
-            this.setState({nextActivity: null});
             return;
         }
-        const nextActivity = this.state.nextActivity ? this.state.nextActivity : this.props.programs[this.props.programId].sections[this.props.sectionId].activities[this.state.currentActivityIndex + 1];
-        this.props.completeAction(this.props.programId, this.props.sectionId, this.state.currentActivityIndex + 1, nextActivity.type, null)
-        this.setState({currentActivityIndex: this.state.currentActivityIndex +1, nextActivity: nextActivity });
+        const nextActivity = this.props.programs[this.props.programId].sections[this.props.sectionId].activities[this.state.currentActivityIndex + 1];
+        let optionValue = null;
+        if(nextActivity.type === 'Question') {
+            optionValue = nextActivity.selectedOption;
+        }
+        this.props.completeAction(this.props.programId, this.props.sectionId, this.state.currentActivityIndex + 1, nextActivity.type, optionValue)
+        this.setState({currentActivityIndex: this.state.currentActivityIndex +1});
     }
+
+    handleFinishActivity = () => {
+        this.setState({currentyActivityIndex: 0});
+    }
+
+    handleNavigation = () => {
+        this.setState({currentActivityIndex: 0});
+    }
+    
     render() {
-        const currentActivityState = this.props.programs[this.props.programId].sections[this.props.sectionId].activities[this.state.currentActivityIndex];
+        const currentActivity = this.props.programs[this.props.programId].sections[this.props.sectionId].activities[this.state.currentActivityIndex];
+        console.log(this.props.programs);
         return (
             <React.Fragment>
                 <div className='activities'>
+                    <div className='activity-nav'>
+                        <button className={`activity-prev ${this.state.currentActivityIndex === 0 ? 'hidden' : ''}`} onClick={this.handlePrevActivity}>Previous</button>
+                        <button className={`activity-next ${this.state.currentActivityIndex === this.state.activityCount - 1 ? 'hidden' : ''}`}  disabled={currentActivity.type === 'Question' && !currentActivity.isComplete} onClick={this.handleNextActivity}>Next</button>
+                        <Link to={`/programs/${this.props.programId}`} className={`activity-finish ${currentActivity.isComplete && this.state.currentActivityIndex === this.state.activityCount - 1 ? '' : 'hidden'}`} onClick={this.handleFinishActivity}>Finish</Link>
+                    </div>
                     {this.props.programs[this.props.programId].sections[this.props.sectionId].activities.map((activity, index) => (
                         <Activity key={`section-${this.props.sectionId}-activity-${index}`} active={this.state.currentActivityIndex === index} {...this.props} activity={activity} activityIndex={index}/>
                     ))}
                 </div>
-                <div className='activity-nav'>
-                    <button className={`activity-prev ${this.state.currentActivityIndex === 0 ? 'hidden' : ''}`} onClick={this.handlePrevActivity}>Previous Activity</button>
-                    <button className={`activity-next ${this.state.currentActivityIndex === this.state.activityCount - 1 ? 'hidden' : ''}`}  disabled={currentActivityState.type === 'Question' && !currentActivityState.isComplete}onClick={this.handleNextActivity}>Next Activity</button>
-                </div>
+                <FooterNav {...this.props} handleNavigation={this.handleNavigation} />
             </React.Fragment>
         )
     }
